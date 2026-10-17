@@ -43,10 +43,17 @@ nav .btn:hover{background:transparent;color:var(--negro)}
 
 /* Portada */
 .hero{position:relative;background:#0d0d0d;color:#fff;overflow:hidden;isolation:isolate}
-.hero .bg{position:absolute;left:0;right:0;top:-8%;bottom:-8%;z-index:-2;will-change:transform}
-.hero .bg img{width:100%;height:100%;object-fit:cover;object-position:78% 40%;transform-origin:78% 40%;animation:kb 22s var(--ease) both}
-@keyframes kb{from{transform:scale(1.18)}to{transform:scale(1.02)}}
-.hero::after{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(90deg,rgba(10,10,10,.9) 0%,rgba(10,10,10,.6) 38%,rgba(10,10,10,0) 70%)}
+.hero .wall{position:absolute;inset:-22% -12%;z-index:-2;display:flex;justify-content:center;gap:14px;transform:rotate(-9deg);animation:wallin 1.6s var(--ease) both}
+@keyframes wallin{from{opacity:0;transform:rotate(-9deg) scale(1.12)}to{opacity:1;transform:rotate(-9deg) scale(1)}}
+.hero .col{flex:1 1 0;min-width:0;overflow:hidden}
+.hero .ct{display:flex;flex-direction:column}
+.hero .ct img{width:100%;aspect-ratio:3/4;object-fit:cover;object-position:50% 30%;border-radius:18px;margin-bottom:14px;flex:none}
+.hero .cloned .ct{animation:rise 80s linear infinite}
+.hero .col:nth-child(even).cloned .ct{animation-direction:reverse;animation-duration:96s}
+.hero .col:nth-child(3).cloned .ct{animation-duration:68s}
+@keyframes rise{to{transform:translateY(-50%)}}
+.hero .col:nth-child(2){margin-top:-90px}.hero .col:nth-child(4){margin-top:-150px}
+.hero::after{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(90deg,rgba(10,10,10,.94) 0%,rgba(10,10,10,.82) 30%,rgba(10,10,10,.35) 62%,rgba(10,10,10,.15) 100%),linear-gradient(180deg,rgba(10,10,10,.5) 0%,rgba(10,10,10,0) 22%,rgba(10,10,10,0) 78%,rgba(10,10,10,.6) 100%)}
 .hero .in{padding-block:clamp(84px,13vw,160px) clamp(84px,11vw,140px);position:relative}
 .eyebrow{font-size:12px;letter-spacing:.32em;text-transform:uppercase;font-weight:600;color:var(--amarillo);margin:0 0 22px}
 h1{font-size:clamp(46px,8vw,104px);line-height:.96;font-weight:800;letter-spacing:-.055em;margin:0;max-width:10.5ch}
@@ -63,9 +70,11 @@ h1 .w.y{color:var(--amarillo)}
 .cue i::after{content:"";position:absolute;left:0;top:-50%;width:1px;height:50%;background:var(--amarillo);animation:drip 2s ease-in-out infinite}
 @keyframes drip{to{top:110%}}
 @media (max-width:700px){
-  .hero::after{background:linear-gradient(0deg,rgba(10,10,10,.93) 0%,rgba(10,10,10,.6) 55%,rgba(10,10,10,.12) 100%)}
-  .hero .in{padding-block:250px 84px}
-  .hero .bg img{object-position:80% 30%;transform-origin:80% 30%}
+  .hero::after{background:linear-gradient(0deg,rgba(10,10,10,.95) 0%,rgba(10,10,10,.8) 45%,rgba(10,10,10,.2) 100%)}
+  .hero .in{padding-block:230px 84px}
+  .hero .wall{inset:-10% -30%;gap:10px}
+  .hero .col:nth-child(4){display:none}
+  .hero .ct img{margin-bottom:10px;border-radius:14px}
   .cue{display:none}
 }
 @keyframes slide{to{transform:translateX(-50%)}}
@@ -175,7 +184,7 @@ footer .in{display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px}
 @media (prefers-reduced-motion:reduce){
   html{scroll-behavior:auto}
   *,*::before,*::after{animation:none!important;transition:none!important}
-  .hero .bg img,.hero .bg{transform:none!important}
+  .hero .wall{transform:rotate(-9deg)!important}
 }
 </style></head><body>
 
@@ -195,7 +204,12 @@ footer .in{display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px}
 
 <main>
 <div class="hero" id="inicio">
-  <div class="bg" data-par="0.18"><img src="img/fotos/xv-51.jpg" alt="Quinceañera con vestido rojo y cola larga sobre una playa de piedras en Manzanillo"></div>
+  <div class="wall" aria-hidden="true">
+    <div class="col"><div class="ct"><img src="img/fotos/xv-49.jpg" alt=""><img src="img/fotos/boda-14.jpg" alt=""><img src="img/fotos/mat-1.jpg" alt=""><img src="img/fotos/fam-8.jpg" alt=""></div></div>
+    <div class="col"><div class="ct"><img src="img/fotos/boda-20.jpg" alt=""><img src="img/fotos/xv-45.jpg" alt=""><img src="img/fotos/comp-48.jpg" alt=""><img src="img/fotos/mat-12.jpg" alt=""></div></div>
+    <div class="col"><div class="ct"><img src="img/fotos/fam-6.jpg" alt=""><img src="img/fotos/boda-18.jpg" alt=""><img src="img/fotos/xv-50.jpg" alt=""><img src="img/fotos/mat-39.jpg" alt=""></div></div>
+    <div class="col"><div class="ct"><img src="img/fotos/boda-26.jpg" alt=""><img src="img/fotos/xv-51.jpg" alt=""><img src="img/fotos/inf-30.jpg" alt=""><img src="img/fotos/mat-37.jpg" alt=""></div></div>
+  </div>
   <div class="in">
     <p class="eyebrow">Fotografía y video · Manzanillo, Colima</p>
     <h1 aria-label="Tus ideas también se pueden ver">
@@ -320,8 +334,13 @@ footer .in{display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px}
   var vh = function(){return window.innerHeight};
   var clamp = function(v,a,b){return Math.max(a,Math.min(b,v))};
 
-  /* Tiras en bucle: duplicar contenido */
+  /* Tiras y muro de la portada en bucle: duplicar contenido */
   if(!reduce){
+    document.querySelectorAll('.hero .col').forEach(function(col){
+      var t=col.querySelector('.ct');
+      Array.prototype.slice.call(t.children).forEach(function(n){var c=n.cloneNode(true);c.setAttribute('aria-hidden','true');t.appendChild(c)});
+      col.classList.add('cloned');
+    });
     document.querySelectorAll('.strip').forEach(function(s){
       var t=s.querySelector('.track');
       Array.prototype.slice.call(t.children).forEach(function(n){var c=n.cloneNode(true);c.alt='';c.setAttribute('aria-hidden','true');t.appendChild(c)});
