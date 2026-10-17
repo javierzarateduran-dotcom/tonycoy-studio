@@ -19,7 +19,7 @@ img{display:block;max-width:100%}
 .in{max-width:1180px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
 :focus-visible{outline:3px solid var(--negro);outline-offset:3px}
 @media (prefers-color-scheme: dark){:root:not([data-theme="light"]) :focus-visible{outline-color:var(--amarillo)}}
-.btn{display:inline-block;background:var(--negro);color:var(--hueso);font-weight:600;font-size:15px;padding:14px 28px;border-radius:999px;text-decoration:none;border:2px solid var(--negro);text-align:center;transition:background .25s,color .25s,transform .25s var(--ease)}
+.btn{display:inline-block;background:var(--negro);color:var(--hueso);font-weight:600;font-size:17px;padding:16px 32px;border-radius:999px;text-decoration:none;border:2px solid var(--negro);text-align:center;transition:background .25s,color .25s,transform .25s var(--ease)}
 .btn:hover{background:transparent;color:var(--negro)}
 .btn.y{background:var(--amarillo);color:var(--negro);border-color:var(--amarillo)}
 .btn.y:hover{background:transparent;color:var(--amarillo)}
@@ -31,13 +31,13 @@ header{position:sticky;top:env(safe-area-inset-top,0px);z-index:30;background:va
 header .in{display:flex;align-items:center;justify-content:space-between;gap:16px;padding-block:11px}
 #prog{position:absolute;left:0;bottom:0;height:3px;width:100%;background:var(--negro);transform:scaleX(0);transform-origin:left}
 .brand{display:flex;flex-direction:column;line-height:1;text-decoration:none}
-.brand b{font-weight:700;font-size:24px;letter-spacing:-.05em}
-.brand span{font-size:7px;letter-spacing:.55em;margin-top:5px;color:var(--arena)}
+.brand b{font-weight:700;font-size:28px;letter-spacing:-.05em}
+.brand span{font-size:9.5px;letter-spacing:.3em;font-weight:600;margin-top:5px;color:#3B372D}
 nav{display:flex;gap:24px;align-items:center}
 nav a:not(.btn){font-size:14px;font-weight:500;text-decoration:none;position:relative}
 nav a:not(.btn)::after{content:"";position:absolute;left:0;right:0;bottom:-4px;height:2px;background:currentColor;transform:scaleX(0);transform-origin:left;transition:transform .35s var(--ease)}
 nav a:not(.btn):hover::after{transform:scaleX(1)}
-nav .btn{padding:10px 22px;font-size:14px;background:var(--negro);color:var(--hueso)}
+nav .btn{padding:12px 26px;font-size:16px;background:var(--negro);color:var(--hueso)}
 nav .btn:hover{background:transparent;color:var(--negro)}
 @media (max-width:760px){nav a:not(.btn){display:none}}
 
